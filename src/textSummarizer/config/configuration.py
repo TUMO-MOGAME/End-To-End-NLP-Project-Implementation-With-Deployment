@@ -1,7 +1,8 @@
 from textSummarizer.constants import *
 from textSummarizer.utils.common import read_yaml, create_directories
 from textSummarizer.entity import DataIngestionConfig, DataValidationConfig
-
+from textSummarizer.entity import DataTransformationConfig
+from textSummarizer.entity import ModelTrainerConfig, ModelEvaluationConfig
 
 class ConfigurationManager:
     def __init__(self,config_filepath = CONFIG_FILE_PATH, params_filepath = PARAMS_FILE_PATH):
@@ -37,4 +38,71 @@ class ConfigurationManager:
         )
 
         return data_validation_config
+    
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config.data_transformation
+
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            tokenizer_name=config.tokenizer_name
+        )
+
+        return data_transformation_config
         
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            model_ckpt=config.model_ckpt,
+            num_train_epochs=config.num_train_epochs,
+            warmup_steps=config.warmup_steps,
+            per_device_train_batch_size=config.per_device_train_batch_size,
+            weight_decay=config.weight_decay,
+            logging_steps=config.logging_steps,
+            evaluation_strategy=config.evaluation_strategy,
+            eval_steps=config.eval_steps,
+            save_steps=config.save_steps,
+            gradient_accumulation_steps=config.gradient_accumulation_steps,
+            per_device_eval_batch_size=config.per_device_eval_batch_size,
+            max_source_length=config.max_source_length,
+            max_target_length=config.max_target_length,
+            val_max_target_length=config.val_max_target_length,
+            num_beams=config.num_beams,
+            load_best_model_at_end=config.load_best_model_at_end,
+            greater_is_better=config.greater_is_better,
+            metric_for_best_model=config.metric_for_best_model,
+            save_total_limit=config.save_total_limit,
+            report_to=config.report_to,
+            push_to_hub=config.push_to_hub,
+            hub_model_id=config.hub_model_id,
+            hub_token=config.hub_token,
+            hub_strategy=config.hub_strategy,
+            hub_private_repo=config.hub_private_repo,
+            hub_always_push=config.hub_always_push,
+            hub_revision=config.hub_revision
+        )
+
+        return model_trainer_config
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config.model_evaluation
+
+        create_directories([config.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            model_path=config.model_path,
+            tokenizer_path=config.tokenizer_path,
+            metric_file_name=config.metric_file_name
+        )
+
+        return model_evaluation_config
