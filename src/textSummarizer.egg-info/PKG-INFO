@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: textSummarizer
 Version: 0.0.0
 Summary: A small python package for NLP app
@@ -7,3 +7,29 @@ Author: Tumo Olorato Mogame
 Author-email: tumomogame9@gmail.com
 Project-URL: Bug Tracker, https://github.com/Tumo Olorato Mogame/End-To-End-NLP-Project-Implementation-With-Deployment/issues
 Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: project-url
+Dynamic: summary
+
+# END TO END TEXT - SUMMARIZATION PROJECT
+
+## WORKFLOW
+
+1. update config.yaml
+2. update params.yaml
+3. update the entity
+4. update the configuration manager in src/textSummarizer/config/configuration.py
+5. update the components
+6. update the pipeline
+7. update the main.py
+8. update the app.py
+9. update the requirements.txt
+10. update the setup.py
+11. build the package
+12. upload the package to pypi
+13. install the package
+14. test the package
