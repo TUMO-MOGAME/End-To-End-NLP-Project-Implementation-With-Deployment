@@ -121,3 +121,5 @@ artifacts/
 *.h5
 *.hdf5
 *.pb
+
+artifacts/
