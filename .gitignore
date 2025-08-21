@@ -122,4 +122,4 @@ artifacts/
 *.hdf5
 *.pb
 
-artifacts/
+artifacts/*
